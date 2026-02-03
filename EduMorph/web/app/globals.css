@@ -423,6 +423,110 @@ span.rough-bracket::after {
   }
 }
 
+/* Mobile Responsive Utilities */
+
+/* Hamburger Menu Animation */
+.hamburger-menu {
+  @apply flex flex-col gap-1.5 w-6 h-6 cursor-pointer;
+}
+
+.hamburger-line {
+  @apply w-full h-0.5 bg-slate-700 dark:bg-slate-300 transition-all duration-300 ease-in-out rounded-full;
+}
+
+.hamburger-menu.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-menu.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Sidebar Overlay */
+.mobile-sidebar-overlay {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300;
+}
+
+/* Mobile Sidebar Drawer */
+.mobile-sidebar-drawer {
+  @apply fixed top-0 left-0 h-full z-50 transform transition-transform duration-300 ease-in-out;
+}
+
+.mobile-sidebar-drawer.closed {
+  transform: translateX(-100%);
+}
+
+.mobile-sidebar-drawer.open {
+  transform: translateX(0);
+}
+
+/* Touch-friendly tap targets */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px];
+}
+
+/* Mobile-specific spacing */
+.mobile-px {
+  @apply px-4;
+}
+
+@media (min-width: 768px) {
+  .mobile-px {
+    @apply px-6;
+  }
+}
+
+.mobile-py {
+  @apply py-3;
+}
+
+@media (min-width: 768px) {
+  .mobile-py {
+    @apply py-4;
+  }
+}
+
+/* Responsive text sizes */
+.text-responsive-xl {
+  @apply text-2xl;
+}
+
+@media (min-width: 640px) {
+  .text-responsive-xl {
+    @apply text-3xl;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-responsive-xl {
+    @apply text-4xl;
+  }
+}
+
+/* Safe area padding for notched devices */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  @apply overflow-x-hidden;
+}
+
+/* Mobile-friendly scroll containers */
+.mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
 /* Simplified styles for PDF export */
 @media print {
   .rough-circle::before,
