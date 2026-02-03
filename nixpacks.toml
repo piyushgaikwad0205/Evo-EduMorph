@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["python311"]
+
+[phases.install]
+cmds = ["cd EduMorph && pip install -r requirements.txt"]
+
+[start]
+cmd = "cd EduMorph && python src/api/run_server.py"
