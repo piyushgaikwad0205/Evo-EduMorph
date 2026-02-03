@@ -41,6 +41,7 @@ interface NavItem {
 // All available navigation items (static reference)
 const ALL_NAV_ITEMS: Record<string, { icon: LucideIcon; nameKey: string }> = {
   "/": { icon: Home, nameKey: "Home" },
+  "/dashboard": { icon: GraduationCap, nameKey: "Dashboard" },
   "/history": { icon: History, nameKey: "History" },
   "/knowledge": { icon: BookOpen, nameKey: "Knowledge Bases" },
   "/notebook": { icon: Book, nameKey: "Notebooks" },
@@ -52,7 +53,7 @@ const ALL_NAV_ITEMS: Record<string, { icon: LucideIcon; nameKey: string }> = {
   "/co_writer": { icon: Edit3, nameKey: "Co-Writer" },
 };
 
-export default function Sidebar() {
+export default function Sidebar({ mobile = false, onNavigate }: { mobile?: boolean; onNavigate?: () => void }) {
   const pathname = usePathname();
   const {
     sidebarCollapsed,
@@ -243,7 +244,7 @@ export default function Sidebar() {
                     : "opacity-100"
                 }`}
               >
-                EduPhase
+                EduMorph
               </h1>
             </div>
             <div

@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
 import { GlobalProvider } from "@/context/GlobalContext";
 import ThemeScript from "@/components/ThemeScript";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import { I18nClientBridge } from "@/i18n/I18nClientBridge";
+import { AuthProvider } from "@/context/AuthContext";
 
 // Use Inter font with swap display for better loading
 const font = Inter({
@@ -31,16 +33,23 @@ export default function RootLayout({
       </head>
       <body className={font.className}>
         <GlobalProvider>
-          <I18nClientBridge>
-            <LayoutWrapper>
-              <div className="flex h-screen bg-slate-50 dark:bg-slate-900 overflow-hidden transition-colors duration-200">
-                <Sidebar />
-                <main className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-900">
-                  {children}
-                </main>
-              </div>
-            </LayoutWrapper>
-          </I18nClientBridge>
+          <AuthProvider>
+            <I18nClientBridge>
+              <LayoutWrapper>
+                <div className="flex h-screen bg-slate-50 dark:bg-slate-900 overflow-hidden transition-colors duration-200">
+                  {/* Desktop Sidebar - Hidden on mobile */}
+                  <div className="hidden lg:block">
+                    <Sidebar />
+                  </div>
+                  {/* Mobile Navigation */}
+                  <MobileNav />
+                  <main className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-900 pt-16 lg:pt-0">
+                    {children}
+                  </main>
+                </div>
+              </LayoutWrapper>
+            </I18nClientBridge>
+          </AuthProvider>
         </GlobalProvider>
       </body>
     </html>
