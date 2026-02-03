@@ -2,7 +2,11 @@
 nixPkgs = ["python311"]
 
 [phases.install]
-cmds = ["python3.11 -m ensurepip", "python3.11 -m pip install --upgrade pip", "python3.11 -m pip install -r requirements.txt"]
+cmds = [
+  "python3.11 -m venv /opt/venv",
+  "/opt/venv/bin/pip install --upgrade pip",
+  "/opt/venv/bin/pip install -r requirements.txt"
+]
 
 [start]
-cmd = "cd EduMorph && python3.11 src/api/run_server.py"
+cmd = "cd EduMorph && /opt/venv/bin/python src/api/run_server.py"
