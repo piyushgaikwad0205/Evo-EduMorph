@@ -57,3 +57,19 @@ export function wsUrl(path: string): string {
 
   return `${normalizedBase}${normalizedPath}`;
 }
+
+/**
+ * Get default headers for API requests
+ * Includes ngrok-skip-browser-warning header for ngrok tunnels
+ * @returns Headers object for fetch requests
+ */
+export function getApiHeaders(): HeadersInit {
+  const headers: HeadersInit = {};
+  
+  // Add ngrok header if using ngrok URL
+  if (API_BASE_URL.includes("ngrok")) {
+    headers["ngrok-skip-browser-warning"] = "true";
+  }
+  
+  return headers;
+}

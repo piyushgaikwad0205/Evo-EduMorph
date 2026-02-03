@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
-import { apiUrl } from "@/lib/api";
+import { apiUrl, getApiHeaders } from "@/lib/api";
 import {
   SessionState,
   ChatMessage,
@@ -146,7 +146,10 @@ export function useGuideSession() {
 
         const res = await fetch(apiUrl("/api/v1/guide/create_session"), {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            ...getApiHeaders()
+          },
           body: JSON.stringify({ records: recordsArray }),
         });
         const data = await res.json();
